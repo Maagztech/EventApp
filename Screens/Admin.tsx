@@ -1,4 +1,3 @@
-// import EventAddandEdit from "@/components/events/EventAddandEdit";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
@@ -9,6 +8,7 @@ import {
   Text,
   View,
 } from "react-native";
+import EventAddandEdit from "../Components/EventAddandEdit";
 import { useAuth } from "../context/authContext";
 import { useEventContext } from "../context/eventContext";
 
@@ -108,11 +108,11 @@ export default function Index() {
           </View>
         ))}
       </ScrollView>
-      {/* <EventAddandEdit
+      <EventAddandEdit
         isOpen={open}
         setIsOpen={setOpen}
         fetchEvents={fetchEvents}
-      /> */}
+      />
     </View>
   );
 }

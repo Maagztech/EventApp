@@ -5,6 +5,7 @@ import React from 'react';
 import { SafeAreaView, StatusBar } from 'react-native';
 import Toast from 'react-native-toast-message';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Loading from './Components/GlobalLoader';
 import Header from './Components/Headers';
 import { AuthProvider, useAuth } from './context/authContext';
 import { EventProvider } from './context/eventContext';
@@ -57,7 +58,7 @@ function AppNavigator(): React.JSX.Element {
       <Stack.Screen name="Tabs" component={TabNavigator} />
       <Stack.Screen name="Admin" component={Admin} />
       <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Event" component={Event}/>
+      <Stack.Screen name="Event" component={Event} />
     </Stack.Navigator>
   );
 }
@@ -69,6 +70,7 @@ function App(): React.JSX.Element {
       <NavigationContainer>
         <AuthProvider>
           <EventProvider>
+            <Loading />
             <Header />
             <AppNavigator />
           </EventProvider>
