@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
         if (refresh_token) {
           const response = await axios.post("https://eventsapi-umam.onrender.com/api/refresh_token", { refresh_token });
           setUserInfo(response.data.user)
-          // navigation.navigate("/(client)");
+          navigation.navigate("Tabs");
           setAccessToken(response.data.access_token)
           Toast.show({
             type: 'success',
@@ -31,16 +31,13 @@ export const AuthProvider = ({ children }) => {
           AsyncStorage.setItem("refresh_token", response.data.refresh_token);
           setIsLoading(false);
         } else {
-          // navigation.navigate("/");
           setIsLoading(false);
         }
       } catch (error) {
-        // navigation.navigate("/");
         setIsLoading(false);
       }
     };
     fetchUser();
-
   }, [])
 
   const getLocalUser = async () => {
@@ -75,7 +72,7 @@ export const AuthProvider = ({ children }) => {
     try {
       await AsyncStorage.removeItem("refresh_token");
       setUserInfo(null);
-      // navigation.navigate("/(auth)");
+      navigation.navigate("Login");
     } catch (error) {
       console.error("Logout failed:", error);
     }
