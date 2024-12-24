@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import Toast from 'react-native-toast-message';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useAuth } from '../context/authContext';
 import ConfirmModal from './ConfirmModal';
@@ -73,6 +74,7 @@ const Header = () => {
           </View>
         </View>
       </Modal>
+      <Toast/>
     </View>
   );
 };

@@ -19,6 +19,7 @@ import {
   launchImageLibrary,
 } from 'react-native-image-picker';
 import { Checkbox } from 'react-native-paper';
+import Toast from 'react-native-toast-message';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useAuth } from '../context/authContext';
 import { useEventContext } from '../context/eventContext';
@@ -146,6 +147,20 @@ const EventAddandEdit = ({
     seats: string;
   }
 
+  const validateDateFormat = (date: string) => {
+    const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/; // YYYY-MM-DD format
+    return dateFormatRegex.test(date);
+  };
+
+  const handleDateChange = (value: string) => {
+    setEventData(prevData => ({
+      ...prevData,
+      date: value,
+    }));
+  };
+
+
+
   const pickImages = async (
     setEventData: React.Dispatch<React.SetStateAction<EventData>>,
   ) => {
@@ -173,6 +188,14 @@ const EventAddandEdit = ({
   };
 
   const canSignUp = () => {
+    if(!validateDateFormat(eventData.date)){
+      Toast.show({
+        type: 'error',
+        text1: 'Invalid Date',
+        text2: 'Please enter the date in YYYY-MM-DD format',
+      });
+      return false;
+    }
     return (
       eventData.title &&
       eventData.image.length > 0 &&
@@ -368,13 +391,8 @@ const EventAddandEdit = ({
               />
               <LabeledInput
                 label="Date (YYYY-MM-DD)"
-                value={eventData.date.split('T')[0]}
-                onChangeText={(value: any) =>
-                  setEventData(prevData => ({
-                    ...prevData,
-                    date: value,
-                  }))
-                }
+                value={eventData.date}
+                onChangeText={handleDateChange}
               />
               <LabeledInput
                 label="Price"
@@ -419,6 +437,7 @@ const EventAddandEdit = ({
           </ScrollView>
         </Animated.View>
       </View>
+      <Toast/>
     </Modal>
   );
 };
