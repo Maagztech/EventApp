@@ -35,7 +35,7 @@ const TabNavigator = () => {
           if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'Registered') {
-            iconName = focused ? 'person' : 'person-outline';
+            iconName = focused ? 'airplane' : 'airplane-outline';
           }
           return <Icon name={iconName} size={size} color={color} />;
         },

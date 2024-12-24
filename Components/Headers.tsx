@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { useAuth } from '../context/authContext';
 import ConfirmModal from './ConfirmModal';
 
@@ -28,7 +28,7 @@ const Header = () => {
       {userInfo && (
         <View style={styles.rightContainer}>
           <Pressable onPress={() => setRoleModalVisible(true)}>
-            <Icon name="user" size={28} color="#000" />;
+            <Icon name="person" size={28} color="#000" />;
           </Pressable>
           <Pressable onPress={() => setVisible(true)}>
             <Icon name="log-out" size={28} color="#000" />
